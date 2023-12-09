@@ -1,5 +1,6 @@
-- hosts: dellos6
+- hosts: dells6
   gather_facts: no
+
   tasks:
     - name: Get Dell EMC OS6 Show version
       raw: show version
