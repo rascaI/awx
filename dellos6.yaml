@@ -3,7 +3,9 @@
 
   tasks:
     - name: Get Dell EMC OS6 Show version
-      raw: show version
+      dellos6_command:
+        commands:
+          - show version
       register: show_ver
 
     - debug:
