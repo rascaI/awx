@@ -1,12 +1,12 @@
-- hosts: dells6
+---
+- hosts: dellos6
+  connection: network_cli
   gather_facts: no
 
   tasks:
-    - name: Get Dell EMC OS6 Show version
-      dellos6_command:
-        commands:
-          - show version
-      register: show_ver
+  - name: "Get Dell EMC OS6 Show version"
+    dellos6_command:
+      commands: ['show version']
+    register: show_ver
 
-    - debug:
-        var: show_ver.stdout_lines
+  - debug: var=show_ver
