@@ -9,22 +9,26 @@
         commands: ['show version']
       register: show_ver
 
+    - name: Debug Information (show_ver)
+      debug:
+        var: show_ver
+
     - name: Display Dell EMC OS6 Firmware Versions
       debug:
         msg: |
           Firmware Versions:
-          Machine Description: {{ show_ver.stdout_lines[1] }}
-          System Model ID: {{ show_ver.stdout_lines[2] }}
-          Machine Type: {{ show_ver.stdout_lines[3] }}
-          Serial Number: {{ show_ver.stdout_lines[4] }}
-          Manufacturer: {{ show_ver.stdout_lines[5] }}
-          Burned In MAC Address: {{ show_ver.stdout_lines[6] }}
-          System Object ID: {{ show_ver.stdout_lines[7] }}
-          SOC Version: {{ show_ver.stdout_lines[8] }}
-          HW Version: {{ show_ver.stdout_lines[9] }}
-          CPLD Version: {{ show_ver.stdout_lines[10] }}
-          Image File: {{ show_ver.stdout_lines[11] }}
-          Software Capability: {{ show_ver.stdout_lines[12] }}
+          Machine Description: {{ show_ver.stdout_lines[1] if show_ver.stdout_lines | length > 1 else 'N/A' }}
+          System Model ID: {{ show_ver.stdout_lines[2] if show_ver.stdout_lines | length > 2 else 'N/A' }}
+          Machine Type: {{ show_ver.stdout_lines[3] if show_ver.stdout_lines | length > 3 else 'N/A' }}
+          Serial Number: {{ show_ver.stdout_lines[4] if show_ver.stdout_lines | length > 4 else 'N/A' }}
+          Manufacturer: {{ show_ver.stdout_lines[5] if show_ver.stdout_lines | length > 5 else 'N/A' }}
+          Burned In MAC Address: {{ show_ver.stdout_lines[6] if show_ver.stdout_lines | length > 6 else 'N/A' }}
+          System Object ID: {{ show_ver.stdout_lines[7] if show_ver.stdout_lines | length > 7 else 'N/A' }}
+          SOC Version: {{ show_ver.stdout_lines[8] if show_ver.stdout_lines | length > 8 else 'N/A' }}
+          HW Version: {{ show_ver.stdout_lines[9] if show_ver.stdout_lines | length > 9 else 'N/A' }}
+          CPLD Version: {{ show_ver.stdout_lines[10] if show_ver.stdout_lines | length > 10 else 'N/A' }}
+          Image File: {{ show_ver.stdout_lines[11] if show_ver.stdout_lines | length > 11 else 'N/A' }}
+          Software Capability: {{ show_ver.stdout_lines[12] if show_ver.stdout_lines | length > 12 else 'N/A' }}
 
           Firmware Versions - Active Units:
           unit active      backup      current-active next-active
