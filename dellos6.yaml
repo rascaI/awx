@@ -15,7 +15,7 @@
           Firmware Versions:
           {% for line in show_ver.stdout_lines %}
           {% if 'unit active' in line %}
-          {{ line }}
+          {{ line | regex_replace('\\s+', ' | ', 'g') }}
           {% endif %}
           {% endfor %}
 
