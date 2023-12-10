@@ -11,7 +11,13 @@
 
     - name: Display Dell EMC OS6 Firmware Versions
       debug:
-        var: show_ver.stdout_lines | regex_search('(System|Image) File')
+        msg: |
+          Firmware Versions:
+          {% for line in show_ver.stdout_lines %}
+          {% if 'unit active' in line %}
+          {{ line }}
+          {% endif %}
+          {% endfor %}
 
     - name: Debug Information
       debug:
