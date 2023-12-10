@@ -4,15 +4,15 @@
   gather_facts: no
 
   tasks:
-    - name: "Gather Dell EMC OS6 Device Facts"
-      dellos6_facts:
-        gather_subset: ["all"] 
-      register: dell_facts
-
     - name: "Get Dell EMC OS6 Show version"
+      dellos6_command:
+        commands: ['show version']
+      register: show_ver
+
+    - name: Display Dell EMC OS6 Firmware Versions
       debug:
-        var: dell_facts.show_ver.stdout_lines
+        var: show_ver.stdout_lines | regex_search('(System|Image) File')
 
     - name: Debug Information
       debug:
-        var: dell_facts
+        var: show_ver
