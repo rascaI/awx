@@ -38,4 +38,4 @@
 
     - name: Debug Information
       debug:
-        var: show_ver
+        var: show_ver.stdout
