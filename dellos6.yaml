@@ -13,10 +13,23 @@
       debug:
         msg: |
           Firmware Versions:
-          {% for line in show_ver.stdout_lines %}
-          {% if 'unit active' in line %}
-          {{ line | regex_replace('\\s+', ' | ', 'g') }}
-          {% endif %}
+          Machine Description: {{ show_ver.stdout_lines[1] }}
+          System Model ID: {{ show_ver.stdout_lines[2] }}
+          Machine Type: {{ show_ver.stdout_lines[3] }}
+          Serial Number: {{ show_ver.stdout_lines[4] }}
+          Manufacturer: {{ show_ver.stdout_lines[5] }}
+          Burned In MAC Address: {{ show_ver.stdout_lines[6] }}
+          System Object ID: {{ show_ver.stdout_lines[7] }}
+          SOC Version: {{ show_ver.stdout_lines[8] }}
+          HW Version: {{ show_ver.stdout_lines[9] }}
+          CPLD Version: {{ show_ver.stdout_lines[10] }}
+          Image File: {{ show_ver.stdout_lines[11] }}
+          Software Capability: {{ show_ver.stdout_lines[12] }}
+
+          Firmware Versions - Active Units:
+          unit active      backup      current-active next-active
+          {% for line in show_ver.stdout_lines[14:] %}
+          {{ line }}
           {% endfor %}
 
     - name: Debug Information
