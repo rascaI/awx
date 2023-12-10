@@ -7,8 +7,12 @@
     - name: "Gather Dell EMC OS6 Device Facts"
       dellos6_facts:
         gather_subset: ["all"] 
-      register: facts
+      register: dell_facts
+
+    - name: "Get Dell EMC OS6 Show version"
+      debug:
+        var: dell_facts.show_ver.stdout_lines
 
     - name: Debug Information
       debug:
-        var: facts
+        var: dell_facts
