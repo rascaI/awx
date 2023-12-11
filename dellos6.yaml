@@ -1,4 +1,4 @@
----
+--
 - hosts: dellos6
   connection: network_cli
   gather_facts: no
